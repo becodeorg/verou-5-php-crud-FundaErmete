@@ -14,6 +14,7 @@
     <input type="text" id="name" name="name" required>
     <label for="description">Description:</label>
     <textarea id="description" name="description" required></textarea>
+    <button type="submit" name="submit">Create Card</button>
 </form>
 
 </body>
