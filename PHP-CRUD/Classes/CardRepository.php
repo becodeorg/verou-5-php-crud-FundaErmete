@@ -1,8 +1,5 @@
 <?php
 
-// This class is focussed on dealing with queries for one type of data
-// That allows for easier re-using and it's rather easy to find all your queries
-// This technique is called the repository pattern
 class CardRepository
 {
     private DatabaseManager $databaseManager;
@@ -13,15 +10,18 @@ class CardRepository
         $this->databaseManager = $databaseManager;
     }
 
-    public function create(): void
+    public function create(array $data): void
     {
-
+        $sql = "INSERT INTO cards (name, description) VALUES (?, ?)";
+        $this->databaseManager->execute($sql, [$data['name'], $data['description']]);
     }
 
-    // Get one
-    public function find(): array
-    {
 
+    // Get one
+    public function find(int $id): array
+    {
+        $sql = "SELECT * FROM cards WHERE id = ?";
+        return $this->databaseManager->queryOne($sql, [$id]);
     }
 
     // Get all
@@ -36,7 +36,7 @@ class CardRepository
             ['name' => 'dummy two'],
         ];
 
-        // We get the database connection first, so we can apply our queries with it
+        
         // return $this->databaseManager->connection-> (runYourQueryHere)
     }
 
