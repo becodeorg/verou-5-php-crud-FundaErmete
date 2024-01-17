@@ -20,3 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: overview.php");
     exit();
 }
+
+    // Display the form (HTML form code)
+    require 'createView.php';
+?> 
