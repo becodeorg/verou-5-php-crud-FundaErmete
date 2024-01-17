@@ -31,6 +31,12 @@ class CardRepository
         // TODO: Use your database connection (see $databaseManager) and send your query to your database.
         // TODO: fetch your data at the end of that action.
         // TODO: replace dummy data by real one
+
+        {
+            $sql = "SELECT * FROM cards";
+            return $this->databaseManager->queryAll($sql);
+        }
+    
         return [
             ['name' => 'dummy one'],
             ['name' => 'dummy two'],
@@ -40,14 +46,17 @@ class CardRepository
         // return $this->databaseManager->connection-> (runYourQueryHere)
     }
 
-    public function update(): void
+    public function update(int $id, array $data): void
     {
-
+        $sql = "UPDATE cards SET name = ?, description = ? WHERE id = ?";
+        $this->databaseManager->execute($sql, [$data['name'], $data['description'], $id]);
     }
 
-    public function delete(): void
+    public function delete(int $id): void
     {
-
+        $sql = "DELETE FROM cards WHERE id = ?";
+        $this->databaseManager->execute($sql, [$id]);
     }
-
 }
+?>
+
