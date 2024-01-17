@@ -38,11 +38,11 @@ switch ($page) {
         echo "Editing ...";
         break;
     default:
-        overview();
+        overview($databaseManager, $cards);
         break;
 }
 
-function overview()
+function overview($databaseManager, $cards)
 {
     // Load your view
    
